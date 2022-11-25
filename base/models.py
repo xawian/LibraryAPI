@@ -57,6 +57,8 @@ class Book(models.Model):
 class Client(models.Model):
     name = models.CharField(max_length=20)
     surname = models.CharField(max_length=35)
+    login = models.CharField(max_length=30,null=True, blank=True)
+    password = models.CharField(max_length=30, null=True, blank=True)
     debt = models.FloatField(default=0)
 
     def __str__(self):
