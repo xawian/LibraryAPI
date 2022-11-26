@@ -22,3 +22,11 @@ def getClients(request):
     serializer = ClientSerializer(clients, many=True)
     return Response(serializer.data)
 
+@api_view(['POST'])
+def createUser(request):
+    serializer = ClientSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+
