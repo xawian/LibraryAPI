@@ -35,8 +35,8 @@ class Author(models.Model):
 
 class Status(models.Model):
     hired = models.BooleanField(default=False)
-    hire_date = models.DateField()
-    return_date = models.DateField()
+    hire_date = models.DateField(null=True)
+    return_date = models.DateField(null=True)
 
     def __str__(self):
         return str(self.hired)
@@ -46,7 +46,7 @@ class Book(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    release = models.OneToOneField(Release, on_delete=models.CASCADE)
+    release = models.ForeignKey(Release, on_delete=models.CASCADE)
     status = models.OneToOneField(Status, on_delete=models.CASCADE, null=True, blank=True)
     image = models.CharField(max_length=200, null=True, blank=True)
     def __str__(self):
