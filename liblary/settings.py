@@ -75,6 +75,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'liblary.wsgi.application'
 
+REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser'
+     )
+ }
+
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases

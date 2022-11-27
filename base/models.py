@@ -16,7 +16,7 @@ class Category(models.Model):
 
 
 class Release(models.Model):
-    release_year = models.DateField()
+    release_year = models.PositiveIntegerField()
     release_place = models.CharField(max_length=30)
 
     def __str__(self):
@@ -49,7 +49,6 @@ class Book(models.Model):
     release = models.OneToOneField(Release, on_delete=models.CASCADE)
     status = models.OneToOneField(Status, on_delete=models.CASCADE, null=True, blank=True)
     image = models.CharField(max_length=200, null=True, blank=True)
-
     def __str__(self):
         return self.title
 
@@ -62,7 +61,7 @@ class Client(models.Model):
     debt = models.FloatField(default=0)
 
     def __str__(self):
-        return self.surname
+        return self.login
 
 
 class Hire(models.Model):

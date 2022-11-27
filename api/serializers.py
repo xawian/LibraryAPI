@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from base.models import Book, Client
+from base.models import Book, Client, Hire
 
 class BookSerializer(serializers.ModelSerializer):
     author = serializers.SlugRelatedField(
@@ -39,4 +39,9 @@ class BookSerializer(serializers.ModelSerializer):
 class ClientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Client
+        fields = '__all__'
+
+class HireSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Hire
         fields = '__all__'
