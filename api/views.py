@@ -38,6 +38,7 @@ def getClients(request):
     return Response(serializer.data)
 
 @api_view(['POST'])
+@parser_classes([JSONParser])
 def createUser(request):
     serializer = ClientSerializer(data=request.data)
     if serializer.is_valid():
@@ -86,6 +87,40 @@ def deleteBookById(request, id):
     else:
         data["failure"] = "delete failed"
     return Response(data=data)
+
+@api_view(['POST'])
+@parser_classes([JSONParser])
+def addBook(request, format=None):
+    author = Author.objects.filter(surname=request.data['author']).first()
+    category = Category.objects.filter(category=request.data['category']).first()
+    release = Release.objects.filter(release_place=request.data['release_place']).first()
+    status = Status().save()
+    instance = Book(author=author, title=request.data['title'], category=category, release=release, image=request.data['image'], status=status)
+    instance.save()
+    serializer = BookSerializer(instance)
+    return Response({'received data': serializer.data})
+
+@api_view(['PUT'])
+@parser_classes([JSONParser])
+def updateBook(request, id):
+    book = Book.objects.get(id=id)
+    if 'author' in request.data:
+        author = Author.objects.filter(surname=request.data['author']).first()
+        book.author = author
+    if 'category' in request.data:
+        category = Category.objects.filter(category=request.data['category']).first()
+        book.category = category
+    if 'release' in request.data:
+        release = Release.objects.filter(release_place=request.data['release_place']).first()
+        book.release = release
+    if 'title' in request.data:
+        book.title = request.data['title']
+    if 'image' in request.data:
+        book.image = request.data['image']
+    book.save()
+    serializer = BookSerializer(book)
+    return Response(serializer.data)
+
 
 
 

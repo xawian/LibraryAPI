@@ -13,4 +13,5 @@ urlpatterns = [
     path('deletebook/<str:id>', views.deleteBookById),
     path('hiresbyid/<str:id>', views.getHireById),
     path('getclientbyid/<str:id>', views.getClientById),
+    path('updatebook/<str:id>', views.updateBook),
 ]
