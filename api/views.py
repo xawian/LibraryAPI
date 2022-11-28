@@ -63,6 +63,18 @@ def getClientByLogin(request, login, format=None):
     serializer = ClientSerializer(client, many=False)
     return Response(serializer.data)
 
+@api_view(['DELETE'])
+def deleteBookById(request, id):
+    book = Book.objects.get(id=id)
+    if request.method == "DELETE":
+        operation = book.delete()
+        data = {}
+    if operation:
+        data["success"] = "Usunieto"
+    else:
+        data["failure"] = "delete failed"
+    return Response(data=data)
+
 
 
 

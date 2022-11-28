@@ -9,6 +9,7 @@ urlpatterns = [
     path('hire/', views.createHire),
     path('hires/', views.getAllHires),
     path('books/<str:book_name>', views.getBookByString),
-    path('clients/<str:login>', views.getClientByLogin)
+    path('clients/<str:login>', views.getClientByLogin),
+    path('deletebook/<str:id>', views.deleteBookById),
 
 ]
