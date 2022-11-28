@@ -57,6 +57,18 @@ def getBookByString(request, book_name):
     return Response(serializer.data)
 
 @api_view(['GET'])
+def getHireById(request, id):
+    hire = Hire.objects.filter(client=id)
+    serializer = HireSerializer(hire, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def getClientById(request, id):
+    client = Client.objects.get(id=id)
+    serializer = ClientSerializer(client, many=False)
+    return Response(serializer.data)
+
+@api_view(['GET'])
 @parser_classes([JSONParser])
 def getClientByLogin(request, login, format=None):
     client = Client.objects.get(login=login)

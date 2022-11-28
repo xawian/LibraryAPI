@@ -11,5 +11,6 @@ urlpatterns = [
     path('books/<str:book_name>', views.getBookByString),
     path('clients/<str:login>', views.getClientByLogin),
     path('deletebook/<str:id>', views.deleteBookById),
-
+    path('hiresbyid/<str:id>', views.getHireById),
+    path('getclientbyid/<str:id>', views.getClientById),
 ]
